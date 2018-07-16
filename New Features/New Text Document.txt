@@ -1,0 +1,3 @@
+echo enter network name
+set/p "Asa="
+echo %Asa% > %windir%\umbrella.inf

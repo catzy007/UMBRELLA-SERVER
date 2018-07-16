@@ -1,0 +1,17 @@
+
+Hosted network settings 
+----------------------- 
+    Mode                   : Allowed
+    SSID name              : "UMBRELLA-SERVER-1"
+    Max number of clients  : 100
+    Authentication         : WPA2-Personal
+    Cipher                 : CCMP
+
+Hosted network status   
+--------------------- 
+    Status                 : Started
+    BSSID                  : f4:b7:e2:1a:f4:90
+    Radio type             : 802.11g
+    Channel                : 11
+    Number of clients      : 0
+

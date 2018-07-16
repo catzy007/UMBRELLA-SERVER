@@ -1,0 +1,5 @@
+Reply from 74.125.200.104: bytes=32 time=556ms TTL=45
+Ping statistics for 74.125.200.104:
+    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 556ms, Maximum = 556ms, Average = 556ms
