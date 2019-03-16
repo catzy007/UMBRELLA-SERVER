@@ -14,5 +14,6 @@ void randomPW(char **outPasswd);
 void iptValidator(char *input);
 void umbrellaWriter(char *string);
 void umbrellaReader(char *output);
+int umbrellaChecker(void);
 
 #endif

@@ -96,6 +96,7 @@ void umbrellaWriter(char *string){
 	fprintf(file1,"%s",string);
 	fclose(file1);
 }
+
 void umbrellaReader(char *output){
 	FILE *file1;
 	file1=fopen("C:\\umbrella.cfg","r");
@@ -103,4 +104,15 @@ void umbrellaReader(char *output){
 	fgets(text,sizeof(text),file1);
 	strcpy(output,text);
 	fclose(file1);
+}
+
+int umbrellaChecker(void){
+	FILE *check; char chk[4];
+	check=fopen("C:\\umbrella.cfg","r");
+	if(fgets(chk,sizeof(chk),check)==NULL){
+		fclose(check);
+		return 1;
+	}
+	fclose(check);
+	return 0;
 }
