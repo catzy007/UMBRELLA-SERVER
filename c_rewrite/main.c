@@ -3,8 +3,8 @@
 void firstTimeStartUp(){
 //some variables
 	FILE *check, *checkcmd;
-	char strCheck[35], command[255];
-	char *password;
+	char strCheck[35], command[255], userinput[30];
+	char *ssid; char *paswd;
 	int i,mark;
 	
 //check step 1
@@ -31,16 +31,16 @@ void firstTimeStartUp(){
 	}
 	
 //check step 2
-	randomPW(&password);
+	randomPW(&paswd);
 	//printf("%s",password); //debug line can be removed
 	system("netsh wlan set hostednetwork mode=allow >nul");
 	strcpy(command,"netsh wlan set hostednetwork ssid=HiddenNetwork key=");
-	strcat(command, password);
+	strcat(command, paswd);
 	//printf("%s\n",command); //debug line can be removed
 	checkcmd=popen(command,"r");
 	fgets(strCheck,sizeof(strCheck),checkcmd);
 	pclose(checkcmd);
-	free(password);
+	free(paswd);
 	if(!keywdFinder(strCheck,"started.")){
 		system("color 0c");
 		system("netsh wlan stop hostednetwork >nul");
@@ -52,18 +52,36 @@ void firstTimeStartUp(){
 	system("netsh wlan stop hostednetwork >nul");
 	
 //setup step 1
-	check=popen("echo %COMPUTERNAME%","r");
-	fgets(strCheck,sizeof(strCheck),check);
-	pclose(check);
-	printf("Enter SSID you want to use. Default = %s",strCheck);
+	randomSSID(&ssid);
+	printf("Enter SSID you want to use. Default = %s\n",ssid);
 	printf("Leave empty to use default value.\n");
-	printf("System@userSSID : \n");
-
+	printf("System@userSSID : ");
+	fgets(userinput, 30, stdin);
+	if(userinput[1]!='\0'){
+		iptValidator(userinput);
+		strcpy(ssid,userinput);
+	}
+	
 //setup step 2
-	randomPW(&password);
-	printf("Enter Password you want to use. Default = %s\n",password);
+	randomPW(&paswd);
+	printf("Enter Password you want to use. Default = %s\n",paswd);
 	printf("Leave empty to use default value.\n");
-	printf("System@userPASWD : \n");
+	printf("System@userPASWD : ");
+	fgets(userinput, 30, stdin);
+	if(userinput[1]!='\0'){
+		iptValidator(userinput);
+		strcpy(paswd,userinput);
+	}	
+	
+//submitting input to database
+	//printf("%s %s\n",ssid,paswd); //debug_line_can_be_removed
+	strcpy(command,"netsh wlan set hostednetwork ssid=");
+	strcat(command,ssid);
+	strcat(command,"key=");
+	strcat(command,paswd);
+	//printf("%s",command); //debug_line_can_be_removed
+	umbrellaWriter(command);
+	system(command);
 }
 
 void startUp(){

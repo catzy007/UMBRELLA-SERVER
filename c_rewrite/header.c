@@ -22,15 +22,33 @@ int keywdFinder(const char *string, const char *keyword){
 	return 0;
 }
 
+void randomSSID(char **outssid){
+	FILE *check;
+	char comname[30];
+	int i=0;
+	
+	*outssid=malloc(sizeof(char)*30);
+	check=popen("echo %COMPUTERNAME%","r");
+	fgets(comname,sizeof(comname),check);
+	pclose(check);
+	
+	while(comname[i]!='\0'){
+		i++;
+	}
+	comname[i-1]='\040';
+	strcpy(*outssid,comname);
+	
+}
+
 void randomPW(char **outPasswd){
 	/*
 	example usage of this function
-		char *password;
-		randomPW(&password);
-		printf("%s",password);
+		char *paswd;
+		randomPW(&paswd);
+		printf("%s",paswd);
 	*/
 	char dicti[]="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	char *tmpPasswd=malloc(sizeof(char)*9);
+	char tmpPasswd[8];
 	*outPasswd=malloc(sizeof(char)*9);
 	int i,val;
 	
@@ -42,7 +60,6 @@ void randomPW(char **outPasswd){
 	tmpPasswd[i]='\0';
 	
 	strcpy(*outPasswd,tmpPasswd);
-	free(tmpPasswd);
 }
 
 int checkFile(const char *filename){
@@ -53,4 +70,37 @@ int checkFile(const char *filename){
         return 1;
     }
     return 0;
+}
+
+void iptValidator(char *input){
+	char dicti[]="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	int i=0, j=0, strlen=0, mark=0;
+	while(input[i]!='\0'){
+		mark=0;
+		for(j=0; j<sizeof(dicti)/sizeof(char); j++){
+			if(input[i]!=dicti[j]){
+				mark++;
+			}
+			if(mark==sizeof(dicti)/sizeof(char)){
+				input[i]='-';
+			}
+		}
+		i++;
+	}
+	input[i-1]='\040';
+}
+
+void umbrellaWriter(char *string){
+	FILE *file1;
+	file1=fopen("C:\\umbrella.cfg","w");
+	fprintf(file1,"%s",string);
+	fclose(file1);
+}
+void umbrellaReader(char *output){
+	FILE *file1;
+	file1=fopen("C:\\umbrella.cfg","r");
+	char text[255];
+	fgets(text,sizeof(text),file1);
+	strcpy(output,text);
+	fclose(file1);
 }
