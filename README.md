@@ -7,4 +7,5 @@ there are weired naming scheme in this script. the reason for that was
 this script intended to turn a computer into wifi ap and become server of dota1
 cs cz, ppsspp and so on.
 
-and no. the version 17 never coming... because unknown reason
+~~and no. the version 17 never coming... because unknown reason~~
+and yes version 17 is coming. it's rewritten in C and uses devcpp to make. 
