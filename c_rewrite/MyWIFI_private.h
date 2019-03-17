@@ -1,0 +1,23 @@
+/* THIS FILE WILL BE OVERWRITTEN BY DEV-C++ */
+/* DO NOT EDIT ! */
+
+#ifndef MYWIFI_PRIVATE_H
+#define MYWIFI_PRIVATE_H
+
+/* VERSION DEFINITIONS */
+#define VER_STRING	"17.3.17.19"
+#define VER_MAJOR	17
+#define VER_MINOR	3
+#define VER_RELEASE	17
+#define VER_BUILD	19
+#define COMPANY_NAME	"UMBRELLA"
+#define FILE_VERSION	"17.3.17.19"
+#define FILE_DESCRIPTION	"UMBRELLA-SERVER Control Panel rewritten in C"
+#define INTERNAL_NAME	""
+#define LEGAL_COPYRIGHT	"©2019 Bagus Saputra"
+#define LEGAL_TRADEMARKS	""
+#define ORIGINAL_FILENAME	""
+#define PRODUCT_NAME	"UMBRELLA - MyWifi"
+#define PRODUCT_VERSION	"17.3.17.19"
+
+#endif /*MYWIFI_PRIVATE_H*/

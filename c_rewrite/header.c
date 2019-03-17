@@ -49,7 +49,7 @@ void randomPW(char **outPasswd){
 	*/
 	char dicti[]="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	char tmpPasswd[8];
-	*outPasswd=malloc(sizeof(char)*9);
+	*outPasswd=malloc(sizeof(char)*30);
 	int i,val;
 	
 	srand(time(NULL));
@@ -90,11 +90,26 @@ void iptValidator(char *input){
 	input[i-1]='\040';
 }
 
-void umbrellaWriter(char *string){
+int umbrellaWriter(char *string){
 	FILE *file1;
 	file1=fopen("C:\\umbrella.cfg","w");
-	fprintf(file1,"%s",string);
-	fclose(file1);
+	fprintf(file1,"%s",string); fclose(file1);
+	if(fopen("C:\\umbrella.cfg","r")==NULL){
+		fclose(file1);
+		return 0;
+	}
+	return 1;
+}
+
+int umbrellaDWriter(char *ssid, char *paswd){
+	FILE *file1;
+	file1=fopen("C:\\umbrella.bin","w");
+	fprintf(file1,"%s\n%s",ssid,paswd); fclose(file1);
+	if(fopen("C:\\umbrella.bin","r")==NULL){
+		fclose(file1);
+		return 0;
+	}
+	return 1;
 }
 
 void umbrellaReader(char *output){
@@ -106,13 +121,26 @@ void umbrellaReader(char *output){
 	fclose(file1);
 }
 
+void umbrellaDReader(char **ssid, char **paswd){
+	FILE *file1;
+	char text[30];
+	*ssid=malloc(sizeof(char)*30);
+	*paswd=malloc(sizeof(char)*30);
+	file1=fopen("C:\\umbrella.bin","r");
+	fgets(text,sizeof(text),file1);
+	strcpy(*ssid,text);
+	fgets(text,sizeof(text),file1);
+	strcpy(*paswd,text);
+	fclose(file1);
+}
+
 int umbrellaChecker(void){
 	FILE *check; char chk[4];
 	check=fopen("C:\\umbrella.cfg","r");
 	if(fgets(chk,sizeof(chk),check)==NULL){
 		fclose(check);
-		return 1;
+		return 0;
 	}
 	fclose(check);
-	return 0;
+	return 1;
 }

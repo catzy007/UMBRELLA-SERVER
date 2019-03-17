@@ -12,8 +12,10 @@ int checkFile(const char *filename);
 void randomSSID(char **outssid);
 void randomPW(char **outPasswd);
 void iptValidator(char *input);
-void umbrellaWriter(char *string);
+int umbrellaWriter(char *string);
+int umbrellaDWriter(char *ssid, char *paswd);
 void umbrellaReader(char *output);
+void umbrellaDReader(char **ssid, char **paswd);
 int umbrellaChecker(void);
 
 #endif
