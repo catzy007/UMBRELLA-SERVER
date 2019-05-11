@@ -8,4 +8,4 @@ this script intended to turn a computer into wifi ap and become server of dota1
 cs cz, ppsspp and so on.
 
 ~~and no. the version 17 never coming... because unknown reason~~
-and yes version 17 is coming. it's rewritten in C and uses devcpp to make. 
+and yes version 17 is coming. it's rewritten in C and uses devcpp to make. check `c_rewrite`
